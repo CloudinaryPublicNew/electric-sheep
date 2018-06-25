@@ -1,19 +1,15 @@
-window.SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
-var recognition;
-
 window.onload = function(){
 
-  document.getElementById("btn").addEventListener("click", dictate);
-  recognition = new SpeechRecognition();
-  recognition.onresult = (event) => {
-    console.info("event.results",event.results)
-    const speechToText = event.results[0][0].transcript;
-    document.getElementById("transcrypt").textContent = speechToText;
+  if (annyang) {
+    // Add our commands to annyang
+    annyang.debug();
+    annyang.addCommands(commands);
+    annyang.setLanguage('en');
+    annyang.start();
+
+   
   }
 
-}
 
 
-const dictate = () => {
-  recognition.start();
 }
