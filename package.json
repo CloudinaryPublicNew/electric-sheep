@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/cloudinary-developers/electric-sheep#readme",
   "dependencies": {
-    "annyang": "^2.6.1"
+    "annyang": "^2.6.1",
+    "cloudinary-core": "^2.5.0"
   }
 }
