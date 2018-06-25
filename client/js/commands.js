@@ -2,8 +2,20 @@ var commands = {
 
 
     'enhance *id': function(id){
-      
-      alert("enhance");
+      annyang.abort();
+      pointer.classList.add("point");
+      pointer.style.webkitAnimationPlayState = "running";
+      pointer.addEventListener("animationend", function(){
+        img.setAttribute("src", photo.getNext());
+        img.classList.add("zoomin");
+
+      })
+
+      img.addEventListener("animationend", function(){
+        img.classList.remove("zoomin");
+        img.setAttribute("src", photo.getNext());
+        annyang.resume();
+      })
     },
 
     'stop': function(){
@@ -17,8 +29,7 @@ var commands = {
     },
 
     'pan :where': function(where){
-      console.info(arguments);
-      alert("pan" + where);
+      img.setAttribute("src", photo.getNext());
     },
 
     'go :where': function(where){

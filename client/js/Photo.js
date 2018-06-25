@@ -19,6 +19,7 @@ class Photo {
   
 
   constructor(params) {
+    this.counter = 0;
     this.url = params.url;
     this.history = params.history || [];
     this.width = params.w;
@@ -27,6 +28,7 @@ class Photo {
 
     this.path = [];
     this.IMAGES = [
+
       new Image('es_main_wide', 4032,3024,'es_bottom_left_zoom'),
       new Image('es_bottom_left_zoom', 4032,3024,'es_main_zoom_1'),
       new Image('es_main_zoom_1', 4032,3024,'es_main_zoom_2'),
@@ -49,7 +51,14 @@ class Photo {
   }
 
   getNext(){
-      
+    var urls = [
+      "http://res.cloudinary.com/nitzanj/image/upload/c_crop,x_973,y_1751,w_800,h_600/es_main_wide.jpg",
+      "http://res.cloudinary.com/nitzanj/image/upload/w_800,h_600/es_bottom_left_zoom.jpg",
+      "http://res.cloudinary.com/nitzanj/image/upload/c_crop,x_973,y_1751,w_800,h_600/es_main_wide.jpg"
+    ]
+    var output = urls[this.counter];
+    this.counter +=1;
+    return output;
   }
 
   update(transform) {
