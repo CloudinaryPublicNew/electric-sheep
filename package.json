@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/cloudinary-developers/electric-sheep/issues"
   },
-  "homepage": "https://github.com/cloudinary-developers/electric-sheep#readme"
+  "homepage": "https://github.com/cloudinary-developers/electric-sheep#readme",
+  "dependencies": {
+    "annyang": "^2.6.1"
+  }
 }
