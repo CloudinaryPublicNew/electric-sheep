@@ -16,24 +16,27 @@ class Image {
 }
 
 class Photo {
-  path = [];
-  IMAGES = [
-    Image('es_main_wide', 4032,3024,'es_bottom_left_zoom'),
-    Image('es_bottom_left_zoom', 4032,3024,'es_main_zoom_1'),
-    Image('es_main_zoom_1', 4032,3024,'es_main_zoom_2'),
-    Image('es_main_zoom_2', 4032,3024,'es_main_zoom_3'),
-    Image('es_main_zoom_3', 4032,3024,'es_main_rotate_1'),
-    Image('es_main_rotate_1', 4032,3024,'es_main_rotate_2'),
-    Image('es_main_rotate_2', 4032,3024),
-  ];
-    currentImage = Image();
+  
 
-  constructor(url, history = []) {
-    this.url = url;
-    this.history = history;
-    this.width = 0;
-    this.height = 0;
+  constructor(params) {
+    this.url = params.url;
+    this.history = params.history || [];
+    this.width = params.w;
+    this.height = params.h;
     this.x = this.y = 0;
+
+    this.path = [];
+    this.IMAGES = [
+      new Image('es_main_wide', 4032,3024,'es_bottom_left_zoom'),
+      new Image('es_bottom_left_zoom', 4032,3024,'es_main_zoom_1'),
+      new Image('es_main_zoom_1', 4032,3024,'es_main_zoom_2'),
+      new Image('es_main_zoom_2', 4032,3024,'es_main_zoom_3'),
+      new Image('es_main_zoom_3', 4032,3024,'es_main_rotate_1'),
+      new Image('es_main_rotate_1', 4032,3024,'es_main_rotate_2'),
+      new Image('es_main_rotate_2', 4032,3024),
+    ];
+    this.currentImage = this.IMAGES[0];
+
     /**
      * The ratio between the view and the image. The larger the scale the
      * smaller the view relative to the image.
@@ -43,6 +46,10 @@ class Photo {
     this.zoom = 1;
     this.cl = new cloudinary.Cloudinary({cloud_name: 'nitzanj'});
 
+  }
+
+  getNext(){
+      
   }
 
   update(transform) {
@@ -107,11 +114,11 @@ class Photo {
   }
 
   toUrl(){
-    let tr = new cloudinary.Transformation();
+    let tr = new cloudinary.Transformation()
     this.path.forEach(({from, to})=>{
       tr.width(to.x-from.x).height(to.y-from.h).x(from.x).y(from.y).chain();
     });
-    return this.cl.url(this.currentImage.publicId, tr);
+    return this.cl.url(this.currentImage.publicId, tr.chain().width(this.width).height(this.height).crop("scale").format("jpg"));
   }
 
   /**

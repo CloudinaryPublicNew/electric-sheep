@@ -1,12 +1,9 @@
 var commands = {
 
 
-    'enhance (224 to 176)': function(){
-      console.info(arguments);
+    'enhance *id': function(id){
+      
       alert("enhance");
-      fetch(newUrl);
-      animateRectical(Photo.translatePoint(param));
-
     },
 
     'stop': function(){
