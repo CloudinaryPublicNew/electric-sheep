@@ -1,0 +1,19 @@
+{
+  "name": "electric-sheep",
+  "version": "1.0.0",
+  "description": "Recreate the image processing scene from bladerunner",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cloudinary-developers/electric-sheep.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cloudinary-developers/electric-sheep/issues"
+  },
+  "homepage": "https://github.com/cloudinary-developers/electric-sheep#readme"
+}
