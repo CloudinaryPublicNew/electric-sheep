@@ -133,7 +133,11 @@ class Photo {
    * @return {string} the new image url
    */
   zoomOut(){
-    this.path.pop();
+    if(this.path.length){
+      this.path.pop();
+    } else {
+      this.currentImage = this.currentImage.prev;
+    }
     return this.toUrl();
   }
 
@@ -143,19 +147,30 @@ class Photo {
    * @return {string} the new image url
    */
   pan(howMuch=300){
-    let lastMove = this.path.pop();
-    lastMove.x += howMuch;
-    this.path.push(lastMove);
+    if(this.path.length){
+      let lastMove = this.path.pop();
+      lastMove.x += howMuch;
+      this.path.push(lastMove);
+    }
     return getUrl();
   }
-
+  nextRight(degrees=90){
+    // TODO
+    return nextImage();
+  }
+  nextLeft(degrees=90){
+    // TODO
+    return nextImage();
+  }
   nextImage(){
     let next = this.currentImage.next;
+    next.prev = this.currentImage;
     if(typeof next === typeof "string") {
       this.currentImage = this.IMAGES.find(i=>i.publicId === next);
     } else {
       this.currentImage = next;
     }
+    this.path=[];
     return this.currentImage;
   }
 }
